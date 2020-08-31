@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>tDSL</title>
+<title>parse_helpers</title>
 <link rel="stylesheet" type="text/css" href="nimdoc.out.css">
 
 <script type="text/javascript" src="dochack.js"></script>
@@ -71,7 +71,7 @@ function main() {
 <body onload="main()">
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">tDSL</h1>
+    <h1 class="title">parse_helpers</h1>
     <div class="row">
   <div class="three columns">
     <div class="theme-switch-wrapper">
@@ -98,9 +98,15 @@ function main() {
     </div>
     <ul class="simple simple-toc" id="toc-list">
 <li>
-  <a class="reference reference-toplevel" href="#6" id="56">Imports</a>
+  <a class="reference reference-toplevel" href="#13" id="63">Funcs</a>
   <ul class="simple simple-toc-section">
-    
+      <li><a class="reference" href="#topoSort%2CopenArray%5BVertex%5D%2Cproc%28Vertex%29%2Cproc%28Vertex%29%2Cbool"
+    title="topoSort[Vertex](verts: openArray[Vertex]; deps: proc (vert: Vertex): seq[Hash];
+                 idgen: proc (vert: Vertex): Hash; revese: bool = true): seq[Vertex]"><wbr />topo<wbr />Sort<span class="attachedType"></span></a></li>
+  <li><a class="reference" href="#topoSort%2CopenArray%5BVertex%5D%2Cproc%28Vertex%29%2Cbool"
+    title="topoSort[Vertex](verts: openArray[Vertex]; deps: proc (vert: Vertex): seq[Hash];
+                 revese: bool = true): seq[Vertex]"><wbr />topo<wbr />Sort<span class="attachedType"></span></a></li>
+
   </ul>
 </li>
 
@@ -110,10 +116,39 @@ function main() {
   <div class="nine columns" id="content">
     <div id="tocRoot"></div>
     <p class="module-desc"></p>
-    <div class="section" id="6">
-<h1><a class="toc-backref" href="#6">Imports</a></h1>
+    <div class="section" id="13">
+<h1><a class="toc-backref" href="#13">Funcs</a></h1>
 <dl class="item">
-<a class="reference external" href="grammars.html">grammars</a>, <a class="reference external" href="grammar_dsl.html">grammar_dsl</a>, <a class="reference external" href="parse_tree.html">parse_tree</a>, <a class="reference external" href="parse_primitives.html">parse_primitives</a>, <a class="reference external" href="token.html">token</a>
+<a id="topoSort,openArray[Vertex],proc(Vertex),proc(Vertex),bool"></a>
+<dt><pre><span class="Keyword">func</span> <a href="#topoSort%2CopenArray%5BVertex%5D%2Cproc%28Vertex%29%2Cproc%28Vertex%29%2Cbool"><span class="Identifier">topoSort</span></a><span class="Other">[</span><span class="Identifier">Vertex</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">verts</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">Vertex</span><span class="Other">]</span><span class="Other">;</span>
+                     <span class="Identifier">deps</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">vert</span><span class="Other">:</span> <span class="Identifier">Vertex</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">Hash</span><span class="Other">]</span><span class="Other">;</span>
+                     <span class="Identifier">idgen</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">vert</span><span class="Other">:</span> <span class="Identifier">Vertex</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Hash</span><span class="Other">;</span> <span class="Identifier">revese</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">Vertex</span><span class="Other">]</span></pre></dt>
+<dd>
+
+<blockquote><p><dl class="docutils"><dt>assert @[3, 2, 1] == topoSort(</dt>
+<dd>verts = @[1, 2, 3],<dl class="docutils"><dt>deps = proc(v: int): seq[Hash] =</dt>
+<dd><dl class="docutils"><dt>case v:</dt>
+<dd>of 1: @[Hash(2), Hash(3)] of 2: @[Hash(3)] else: @[]</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>)</p>
+</p></blockquote>
+
+
+</dd>
+<a id="topoSort,openArray[Vertex],proc(Vertex),bool"></a>
+<dt><pre><span class="Keyword">func</span> <a href="#topoSort%2CopenArray%5BVertex%5D%2Cproc%28Vertex%29%2Cbool"><span class="Identifier">topoSort</span></a><span class="Other">[</span><span class="Identifier">Vertex</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">verts</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">Vertex</span><span class="Other">]</span><span class="Other">;</span>
+                     <span class="Identifier">deps</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">vert</span><span class="Other">:</span> <span class="Identifier">Vertex</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">Hash</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">revese</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span>
+    <span class="Identifier">Vertex</span><span class="Other">]</span></pre></dt>
+<dd>
+
+
+
+</dd>
+
 </dl></div>
 
   </div>
@@ -123,7 +158,7 @@ function main() {
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2020-08-31 14:29:26 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2020-08-31 14:29:58 UTC</small>
       </div>
     </div>
   </div>
